@@ -1,0 +1,27 @@
+.breakpoint {
+  overflow: hidden;
+
+  border-bottom: 1px solid #ccc;
+}
+
+form {
+
+}
+
+.form-group {
+  float: left;
+  width: 25%;
+}
+
+label {
+  display: block;
+}
+
+input + label {
+  display: inline;
+}
+
+textarea {
+  height: 25em;
+  width: 45em;
+}
