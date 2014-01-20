@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+  <meta charset="utf-8">
+  <title>Responsive Grid Generator</title>
+</head>
+<body>
+
+<form id="form">
+  <div>
+    <label for=""></label>
+    <input type="number">
+  </div>
+</form>
+
+<div id="grid-base" hidden>
+.grid {
+  margin: 0;
+  padding: 0;
+  letter-spacing: -0.31em;
+  *letter-spacing: normal;
+  *word-spacing: -0.43em;
+  text-rendering: optimizespeed;
+}
+
+.opera-only :-o-prefocus,
+.grid {
+  word-spacing: -0.43em;
+}
+
+.unit {
+  {{grid-unit}}
+  zoom: 1;
+  letter-spacing: normal;
+  text-rendering: auto;
+  vertical-align: top;
+  word-spacing: normal;
+}
+</div>
+
+<div id="grid-unit" hidden>
+  display: inline-block;
+  *display: inline;
+  visibility: visible;
+</div>
+
+<div id="grid-unit-hidden" hidden>
+  display: none;
+  visibility: hidden;
+</div>
+
+<div id="grid-unit-1" hidden>
+  display: block;
+  visibility: visible;
+  width: 100%;
+</div>
+
+  <script src="js/grids.js"></script>
+</body>
+</html>
