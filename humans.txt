@@ -1,0 +1,32 @@
+# humanstxt.org
+
+# TEAM
+
+Designer & Developer: Thomas J Bradley <hey@thomasjbradley.ca>
+Site: http://thomasjbradley.ca
+GitHub: https://github.com/thomasjbradley
+Twitter: @thomasjbradley
+Location: Ottawa, Canada
+
+---
+
+# THANKS
+
+Yahoo YUI Grid Builder for the basic grid set-up.
+http://yui.github.io/gridbuilder/
+
+---
+
+# TECHNOLOGY
+
+## Software
+
+- Sublime Text 3 (with Vintageous)
+- Git + GitHub
+- Grunt.js
+- Stylus
+- Uglify
+
+## Hosting
+
+- GitHub <http://github.com>
