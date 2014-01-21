@@ -116,7 +116,6 @@ $form.on('click', '.btn-remove-breakpoint', function (e) {
 	$form.trigger('submit');
 });
 
-
 $btnAdd.trigger('click');
 $breakpoints.children().find('.btn-remove-breakpoint, .min-width').remove();
 $form.trigger('submit');
