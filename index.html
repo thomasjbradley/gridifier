@@ -2,10 +2,12 @@
 <html lang="en-ca">
 <head>
 	<meta charset="utf-8">
-	<title>Responsive Grid Generator</title>
-	<link href="css/app.css" rel="stylesheet">
+	<title>Gridifier—a responsive grid building tool</title>
+	<link href="css/gridifier.css" rel="stylesheet">
 </head>
 <body>
+
+<h1 class="common-bar__title kilo">Gridifier<span class="common-bar__title__subhead">—a responsive grid building tool</span></h1>
 
 <main class="main">
 	<form id="controls">
@@ -28,8 +30,22 @@
 	</div>
 </main>
 
-<aside class="output">
+<div class="output">
 	<textarea id="output"></textarea>
+</div>
+
+<aside class="common-bar">
+	<ul class="list-group common-bar__social">
+		<li class="list-group-item list-group-item-inline">
+			<a class="icon i--28 i--github ir" href="https://github.com/thomasjbradley/gridifier" rel="external">GitHub</a>
+		</li>
+		<li class="list-group-item list-group-item-inline">
+			<a class="icon i--28 i--twitter ir" href="https://twitter.com/thomasjbradley" rel="external">Twitter</a>
+		</li>
+		<li class="list-group-item list-group-item-inline">
+			<a class="icon i--28 i--20w i--thomasjbradley ir" href="http://thomasjbradley.ca" rel="external">Website</a>
+		</li>
+	</ul>
 </aside>
 
 <script type="text/template" id="breakpoint" hidden>
@@ -92,7 +108,7 @@
 
 <!-- <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> -->
 <script src="js/jquery-2.0.3.min.js"></script>
-<script src="js/grid-builder.js"></script>
+<script src="js/gridifier.js"></script>
 
 </body>
 </html>

@@ -321,6 +321,16 @@ td {
 .clearfix {
   zoom: 1;
 }
+.list-group {
+  padding: 0;
+  list-style-type: none;
+}
+.list-group-item {
+  display: block;
+}
+.list-group-item-inline {
+  display: inline-block;
+}
 html {
   font: normal 100%/1.5 Menlo, Consolas, serif;
 }
@@ -401,6 +411,29 @@ small,
   font-size: 0.7901rem;
   line-height: 1.8984;
 }
+.icon {
+  display: inline-block;
+  background: transparent none no-repeat center center;
+  background-size: contain;
+  vertical-align: middle;
+}
+.i--28 {
+  height: 28px;
+  width: 28px;
+}
+.i--20w {
+  width: 20px;
+}
+.i--thomasjbradley {
+  background-image: url("../img/i-thomasjbradley.svg");
+  background-size: auto 100%;
+}
+.i--github {
+  background-image: url("../img/i-github.svg");
+}
+.i--twitter {
+  background-image: url("../img/i-twitter.svg");
+}
 html {
   height: 100%;
   position: relative;
@@ -414,7 +447,7 @@ body {
   width: 100%;
 }
 .main {
-  bottom: 0;
+  bottom: 3.5rem;
   left: 0;
   overflow-y: auto;
   position: absolute;
@@ -423,7 +456,7 @@ body {
   width: 50%;
 }
 .output {
-  bottom: 0;
+  bottom: 3.5rem;
   position: absolute;
   right: 0;
   top: 0;
@@ -522,4 +555,32 @@ input[type="checkbox"] {
 }
 .breakpoint:last-child .btn-remove-breakpoint {
   display: inline-block;
+}
+.common-bar {
+  bottom: 0;
+  height: 3.5rem;
+  left: 0;
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  background-color: #ddd;
+  border-top: 1px solid #999;
+}
+.common-bar__title {
+  bottom: 1rem;
+  left: 1rem;
+  margin: 0;
+  position: absolute;
+  z-index: 1000;
+  color: #666;
+}
+.common-bar__title__subhead {
+  font-weight: normal;
+}
+.common-bar__social {
+  bottom: 1rem;
+  height: 28px;
+  margin: 0;
+  position: absolute;
+  right: 1rem;
 }
