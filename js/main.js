@@ -59,7 +59,7 @@ var
 			}
 		}
 
-		output.push([unitNames.join(','), ' {\n\t', gridUnit, '\n}\n'].join(''));
+		output.push([unitNames.join(','), ' {\n  ', gridUnit, '\n}\n'].join(''));
 
 		return output;
 	};
