@@ -1,95 +1,97 @@
 <!DOCTYPE html>
 <html lang="en-ca">
 <head>
-  <meta charset="utf-8">
-  <title>Responsive Grid Generator</title>
-  <link href="css/grid-builder.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<title>Responsive Grid Generator</title>
+	<link href="css/grid-builder.css" rel="stylesheet">
 </head>
 <body>
 
 <form id="form">
-  <div class="breakpoint">
-    <div class="form-group">
-      <label for="prefix-0">Prefix</label>
-      <input id="prefix-0" value="xs">
-    </div>
-    <div class="form-group">
-      <label for="columns-0">Columns</label>
-      <input type="number" id="columns-0" value="4">
-    </div>
-    <div class="form-group">
-      <label for="min-width-0">Min-width</label>
-      <input type="number" id="min-width-0">
-    </div>
-    <div class="form-group">
-      <input type="checkbox" id="add-offsets-0" checked>
-      <label for="add-offsets-0">Add offsets</label>
-    </div>
-  </div>
-  <div class="add-breakpoint">
-    <button id="btn-add-breakpoint">Add breakpoint</button>
-  </div>
+	<div class="breakpoint">
+		<div class="form-group">
+			<label for="prefix-0">Prefix</label>
+			<input class="prefix" id="prefix-0" value="xs">
+		</div>
+		<div class="form-group">
+			<label for="columns-0">Columns</label>
+			<input class="columns" type="number" id="columns-0" value="4">
+		</div>
+		<div class="form-group">
+			<input class="add-offsets" type="checkbox" id="add-offsets-0" checked>
+			<label for="add-offsets-0">Add offsets</label>
+		</div>
+	</div>
 </form>
+<div class="add-breakpoint">
+	<button id="btn-add-breakpoint">Add breakpoint</button>
+</div>
 
 <textarea id="output"></textarea>
 
-<div id="breakpoint" hidden>
-  <div class="breakpoint">
-    <div class="form-group">
-      <label for="prefix-{{id}}">Prefix</label>
-      <input id="prefix-{{id}}" value="s">
-    </div>
-    <div class="form-group">
-      <label for="columns-{{id}}">Columns</label>
-      <input type="number" id="columns-{{id}}" value="4">
-    </div>
-    <div class="form-group">
-      <input type="checkbox" id="add-offsets-{{id}}" checked>
-      <label for="add-offsets-{{id}}">Add offsets</label>
-    </div>
-  </div>
-</div>
+<script type="text/template" id="breakpoint" hidden>
+	<div class="breakpoint">
+		<div class="form-group">
+			<label for="prefix-{{id}}">Prefix</label>
+			<input class="prefix" id="prefix-{{id}}" value="{{prefix}}">
+		</div>
+		<div class="form-group">
+			<label for="columns-{{id}}">Columns</label>
+			<input class="columns" type="number" id="columns-{{id}}" value="{{columns}}">
+		</div>
+		<div class="form-group">
+			<label for="min-width-{{id}}">Min-width (em)</label>
+			<input class="min-width" type="number" id="min-width-{{id}}" value="{{min-width}}">
+		</div>
+		<div class="form-group">
+			<input class="add-offsets" type="checkbox" id="add-offsets-{{id}}" checked>
+			<label for="add-offsets-{{id}}">Add offsets</label>
+		</div>
+		<button class="btn-remove-breakpoint">Remove</button>
+	</div>
+</script>
 
-<div id="grid-base" hidden>.grid {
-  margin: 0;
-  padding: 0;
-  letter-spacing: -0.31em;
-  *letter-spacing: normal;
-  *word-spacing: -0.43em;
-  text-rendering: optimizespeed;
+<script type="text/template" id="grid-base" hidden>.grid {
+	margin: 0;
+	padding: 0;
+	letter-spacing: -0.31em;
+	*letter-spacing: normal;
+	*word-spacing: -0.43em;
+	text-rendering: optimizespeed;
 }
 .opera-only :-o-prefocus, .grid {
-  word-spacing: -0.43em;
+	word-spacing: -0.43em;
 }
 .unit {
-  {{grid-unit}}
-  zoom: 1;
-  letter-spacing: normal;
-  text-rendering: auto;
-  vertical-align: top;
-  word-spacing: normal;
+	{{grid-unit}}
+	zoom: 1;
+	letter-spacing: normal;
+	text-rendering: auto;
+	vertical-align: top;
+	word-spacing: normal;
 }
-</div>
+</script>
 
-<div id="grid-unit" hidden>display: inline-block;
-  *display: inline;
-  visibility: visible;</div>
+<script type="text/template" id="grid-unit" hidden>display: inline-block;
+	*display: inline;
+	visibility: visible;</script>
 
-<div id="grid-unit-hidden" hidden>.unit-{{prefix}}-hidden {
-  display: none;
-  visibility: hidden;
+<script type="text/template" id="grid-unit-hidden" hidden>.unit-{{prefix}}-hidden {
+	display: none;
+	visibility: hidden;
 }
-</div>
+</script>
 
-<div id="grid-unit-1" hidden>.unit-{{prefix}}-1 {
-  display: block;
-  visibility: visible;
-  width: 100%;
+<script type="text/template" id="grid-unit-1" hidden>.unit-{{prefix}}-1 {
+	display: block;
+	visibility: visible;
+	width: 100%;
 }
-</div>
+</script>
 
-  <!-- <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> -->
-  <script src="js/jquery-2.0.3.min.js"></script>
-  <script src="js/grid-builder.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> -->
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/grid-builder.js"></script>
+
 </body>
 </html>

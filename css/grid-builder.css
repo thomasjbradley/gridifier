@@ -1,7 +1,15 @@
 .breakpoint {
-  overflow: hidden;
+	overflow: hidden;
 
-  border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.btn-remove-breakpoint {
+	display: none;
+}
+
+.breakpoint:last-child .btn-remove-breakpoint {
+	display: inline-block;
 }
 
 form {
@@ -9,19 +17,19 @@ form {
 }
 
 .form-group {
-  float: left;
-  width: 25%;
+	float: left;
+	width: 25%;
 }
 
 label {
-  display: block;
+	display: block;
 }
 
 input + label {
-  display: inline;
+	display: inline;
 }
 
 textarea {
-  height: 25em;
-  width: 45em;
+	height: 25em;
+	width: 45em;
 }

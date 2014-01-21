@@ -1,68 +1,117 @@
 var
-  $output = $('#output'),
-  base = $('#grid-base').html(),
-  gridUnit = $('#grid-unit').html(),
-  gridUnitHidden = $('#grid-unit-hidden').html(),
-  gridUnit1 = $('#grid-unit-1').html(),
+	defaultPrefixes = ['xs', 's', 'm', 'l', 'xl'],
+	defaultMinWidths = [0, 25, 38, 60, 90],
+	breakpointCount = 1,
+	breakpointTemplate = $('#breakpoint').html(),
+	$form = $('#form'),
+	$output = $('#output'),
+	base = $('#grid-base').html(),
+	gridUnit = $('#grid-unit').html(),
+	gridUnitHidden = $('#grid-unit-hidden').html(),
+	gridUnit1 = $('#grid-unit-1').html(),
 
-  gridUnitWidth = function gridUnitWidth (size, cols) {
-    return (size / cols) * 100;
-  },
+	gridUnitWidth = function gridUnitWidth (size, cols) {
+		return (size / cols) * 100;
+	},
 
-  gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths, unitNames, addOffsets) {
-    var newUnit = true,
-      newWidth = gridUnitWidth(size, cols),
-      newClass = ['.unit', prefix, size, cols].join('-'),
-      newClassOffset = ['.unit-offset', prefix, size, cols].join('-'),
-      output = [];
+	gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths, unitNames, addOffsets) {
+		var newUnit = true,
+			newWidth = gridUnitWidth(size, cols),
+			newClass = ['.unit', prefix, size, cols].join('-'),
+			newClassOffset = ['.unit-offset', prefix, size, cols].join('-'),
+			output = [];
 
-    previousWidths.forEach(function (item, index, array) {
-      if (newWidth == item) newUnit = false;
-    });
+		previousWidths.forEach(function (item, index, array) {
+			if (newWidth == item) newUnit = false;
+		});
 
-    if (newUnit) {
-      previousWidths.push(newWidth);
-      unitNames.push(newClass);
+		if (newUnit) {
+			previousWidths.push(newWidth);
+			unitNames.push(newClass);
 
-      output.push([newClass, ' { width: ', newWidth.toFixed(4), '%; }\n'].join(''))
+			output.push([newClass, ' { width: ', newWidth.toFixed(4), '%; }\n'].join(''))
 
-      if (addOffsets) {
-        output.push([newClassOffset, ' { margin-left: ', newWidth.toFixed(4), '%; }\n'].join(''))
-      }
-    }
+			if (addOffsets) {
+				output.push([newClassOffset, ' { margin-left: ', newWidth.toFixed(4), '%; }\n'].join(''))
+			}
+		}
 
-    return output;
-  },
+		return output;
+	},
 
-  gridUnits = function gridUnits (prefix, cols, addOffsets) {
-    var previousWidths = [100],
-      unitNames = [],
-      output = [],
-      i = 2,
-      j = 1;
+	gridUnits = function gridUnits (prefix, cols, addOffsets) {
+		var previousWidths = [100],
+			unitNames = [],
+			output = [],
+			i = 2,
+			j = 1;
 
-    if (cols < 3) cols = 3;
+		if (cols < 3) cols = 3;
 
-    output.push(gridUnitHidden.replace('{{prefix}}', prefix));
-    output.push(gridUnit1.replace('{{prefix}}', prefix));
+		output.push(gridUnitHidden.replace('{{prefix}}', prefix));
+		output.push(gridUnit1.replace('{{prefix}}', prefix));
 
-    for (i = 2; i <= cols; i++) {
-      for (j = 1; j <= i; j++) {
-        output = output.concat(gridUnitSingle(prefix, j, i, previousWidths, unitNames, addOffsets));
-      }
-    }
+		for (i = 2; i <= cols; i++) {
+			for (j = 1; j <= i; j++) {
+				output = output.concat(gridUnitSingle(prefix, j, i, previousWidths, unitNames, addOffsets));
+			}
+		}
 
-    output.push([unitNames.join(','), ' {\n  ', gridUnit, '\n}'].join(''));
+		output.push([unitNames.join(','), ' {\n\t', gridUnit, '\n}\n'].join(''));
 
-    return output;
-  };
+		return output;
+	};
 
-$('#form').on('change submit', function (e) {
-  var template = [base.replace('{{grid-unit}}', gridUnit)];
+$form.on('keyup change submit', function (e) {
+	var template = [base.replace('{{grid-unit}}', gridUnit)];
 
-  template = template.concat(gridUnits('xs', 4, true));
+	e.preventDefault();
 
-  e.preventDefault();
+	$form.children('.breakpoint').each(function () {
+		var prefix = $(this).find('.prefix').val(),
+			columns = $(this).find('.columns').val(),
+			addOffsets = $(this).find('.add-offsets').is(':checked'),
+			$minWidth = $(this).find('.min-width'),
+			hasMinWidth = $minWidth.length,
+			minWidth = 0;
 
-  $output.html(template.join(''));
+		if (hasMinWidth) {
+			template.push(['@media only screen and (min-width: ', $minWidth.val(), 'em) {\n'].join(''));
+		}
+
+		template = template.concat(gridUnits(prefix, columns, addOffsets));
+
+		if (hasMinWidth) {
+			template.push('}\n');
+		}
+	});
+
+	$output.html(template.join(''));
 });
+
+$('#btn-add-breakpoint').on('click', function (e) {
+	var l = defaultMinWidths.length - 1,
+		minWidthIncrement = 20,
+		extra = (new Array(100)).join("x");
+
+	$form.append(
+		breakpointTemplate
+			.replace(/\{\{id\}\}/g, breakpointCount)
+			.replace('{{columns}}', $form.children('.breakpoint:last-child').find('.columns').val())
+			.replace('{{prefix}}', defaultPrefixes[breakpointCount] || extra.substr(0, breakpointCount - l) + defaultPrefixes[l])
+			.replace('{{min-width}}', defaultMinWidths[breakpointCount] || defaultMinWidths[l] + ((breakpointCount - l) * minWidthIncrement))
+	);
+
+	breakpointCount++;
+
+	$form.trigger('submit');
+});
+
+$form.on('click', '.btn-remove-breakpoint', function (e) {
+	e.preventDefault();
+	$(this).parent().remove();
+	breakpointCount--;
+	$form.trigger('submit');
+});
+
+$form.trigger('submit');
