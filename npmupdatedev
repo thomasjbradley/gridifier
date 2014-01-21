@@ -1,0 +1,18 @@
+#!/usr/bin/env coffee
+
+# An ugly hack of a script to do `npm update` on devDependencies, until it's built in
+# https://github.com/isaacs/npm/pull/3262
+
+fs = require 'fs'
+# _ = require 'underscore'
+spawn = require('child_process').spawn
+
+fs.readFile process.cwd() + '/package.json', 'utf8', (err, data) ->
+  devDeps = JSON.parse(data).devDependencies
+
+  for index, item of devDeps
+    spawn 'npm', [
+      'install'
+      index
+      '--save-dev'
+    ]
