@@ -1,0 +1,141 @@
+@import 'nib'
+@import 'normalize'
+@import 'common'
+@import 'typography'
+
+html
+  height 100%
+  position relative
+
+  background-color #fff
+
+body
+  bottom 0
+  overflow hidden
+  position absolute
+  top 0
+  width 100%
+
+.main
+  bottom 0
+  left 0
+  overflow-y auto
+  position absolute
+  padding 1em
+  top 0
+  width 50%
+
+.output
+  bottom 0
+  position absolute
+  right 0
+  top 0
+  width 50%
+
+  background-color interface-grey
+  border-left 1px solid interface-grey-dark
+
+textarea
+  padding 1em
+  height 100%
+  width 100%
+
+  background-color transparent
+  border 0
+
+  font normal 100%/1.5 brand-family
+
+textarea:focus
+  outline 2px solid #000
+
+table
+  width 100%
+
+  border-collapse collapse
+  table-layout fixed
+
+th
+td
+  padding 0.75rem 0
+  vertical-align middle
+
+  text-align left
+
+th
+  padding-top 0
+
+tr
+  border-bottom 1px solid interface-grey-dark
+
+input
+  padding 0.25em
+  vertical-align middle
+  width 85%
+
+  border 1px solid interface-grey-dark
+
+  font normal 100%/1.5 brand-family
+
+input:focus
+  outline 2px solid #000
+
+input[type="checkbox"]
+  width auto
+
+  cursor pointer
+
+.btn
+  display inline-block
+  padding 0.5em 1em
+
+  background-color interface-grey
+  border 1px solid interface-grey-dark
+  border-radius 6px
+  transition all 70ms linear
+
+  color #000
+  font bold 100%/1.5 brand-family
+
+.btn::before
+  color #000
+
+.btn:hover
+  background-color blue
+  border-color navy
+
+  color #fff
+
+.btn:focus
+  outline 2px solid #000
+
+.btn-fatal:hover
+  background-color red
+  border-color maroon
+
+.btn:hover::before
+  color #fff
+
+.btn-remove-breakpoint
+  display none
+  height 2em
+  padding 0
+  position relative
+  width 2em
+
+  border-radius 1em
+
+.btn-remove-breakpoint::before
+  content "×"
+  left 50%
+  height 1em
+  margin -0.5em 0 0 -0.5em
+  position absolute
+  top 50%
+  width 1em
+
+  line-height 1em
+  text-align center
+
+.breakpoint:last-child .btn-remove-breakpoint
+  display inline-block
+

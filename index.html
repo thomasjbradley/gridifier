@@ -3,47 +3,51 @@
 <head>
 	<meta charset="utf-8">
 	<title>Responsive Grid Generator</title>
-	<link href="css/grid-builder.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
 </head>
 <body>
 
-<form id="form">
-	<table>
-		<thead>
-			<tr>
-				<th scope="col" id="label-prefix">Prefix</th>
-				<th scope="col" id="label-columns">Columns</th>
-				<th scope="col" id="label-min-width">Min-width (em)</th>
-				<th scope="col" id="label-add-offset">Add Offsets</th>
-				<td></td>
-			</tr>
-		</thead>
-		<tbody id="breakpoints"></tbody>
-	</table>
-</form>
+<main class="main">
+	<form id="controls">
+		<table>
+			<thead>
+				<tr>
+					<th scope="col" id="label-prefix" colspan="6">Prefix</th>
+					<th scope="col" id="label-columns" colspan="6">Columns</th>
+					<th scope="col" id="label-min-width" colspan="6">Min-width&nbsp;(em)</th>
+					<th scope="col" id="label-add-offset" colspan="4">Offsets?</th>
+					<td colspan="2"></td>
+				</tr>
+			</thead>
+			<tbody id="breakpoints"></tbody>
+		</table>
+	</form>
 
-<div class="add-breakpoint">
-	<button id="btn-add-breakpoint">Add breakpoint</button>
-</div>
+	<div class="add-breakpoint">
+		<button class="btn" id="btn-add-breakpoint">Add breakpoint</button>
+	</div>
+</main>
 
-<textarea id="output"></textarea>
+<aside class="output">
+	<textarea id="output"></textarea>
+</aside>
 
 <script type="text/template" id="breakpoint" hidden>
 	<tr class="breakpoint">
-		<td>
+		<td colspan="6">
 			<input class="prefix" value="{{prefix}}" aria-labelledby="label-prefix">
 		</td>
-		<td>
+		<td colspan="6">
 			<input class="columns" type="number" value="{{columns}}" aria-labelledby="label-columns">
 		</td>
-		<td>
+		<td colspan="6">
 			<input class="min-width" type="number" value="{{min-width}}" aria-labelledby="label-min-width">
 		</td>
-		<td>
+		<td colspan="4">
 			<input class="add-offsets" type="checkbox" checked aria-labelledby="label-add-offset">
 		</td>
-		<td>
-			<button class="btn-remove-breakpoint">Remove</button>
+		<td colspan="2">
+			<button class="btn btn-fatal btn-remove-breakpoint" title="Remove breakpoint"><span class="ir">Remove</span></button>
 		</td>
 	</tr>
 </script>
