@@ -3,7 +3,7 @@ var
 	defaultMinWidths = [0, 25, 38, 60, 90],
 	breakpointCount = 0,
 	breakpointTemplate = $('#breakpoint').html(),
-	$form = $('#form'),
+	$controls = $('#controls'),
 	$breakpoints = $('#breakpoints'),
 	$btnAdd = $('#btn-add-breakpoint'),
 	$output = $('#output'),
@@ -64,7 +64,7 @@ var
 		return output;
 	};
 
-$form.on('keyup change submit', function (e) {
+$controls.on('keyup change submit', function (e) {
 	var template = [base.replace('{{grid-unit}}', gridUnit)];
 
 	e.preventDefault();
@@ -99,23 +99,23 @@ $btnAdd.on('click', function (e) {
 	$breakpoints.append(
 		breakpointTemplate
 			.replace(/\{\{id\}\}/g, breakpointCount)
-			.replace('{{columns}}', $breakpoints.children('.breakpoint:last-child').find('.columns').val())
+			.replace('{{columns}}', $breakpoints.children('.breakpoint:last-child').find('.columns').val() || 4)
 			.replace('{{prefix}}', defaultPrefixes[breakpointCount] || extra.substr(0, breakpointCount - l) + defaultPrefixes[l])
 			.replace('{{min-width}}', defaultMinWidths[breakpointCount] || defaultMinWidths[l] + ((breakpointCount - l) * minWidthIncrement))
 	);
 
 	breakpointCount++;
 
-	$form.trigger('submit');
+	$controls.trigger('submit');
 });
 
-$form.on('click', '.btn-remove-breakpoint', function (e) {
+$controls.on('click', '.btn-remove-breakpoint', function (e) {
 	e.preventDefault();
 	$(this).parent().parent().remove();
 	breakpointCount--;
-	$form.trigger('submit');
+	$controls.trigger('submit');
 });
 
 $btnAdd.trigger('click');
 $breakpoints.children().find('.btn-remove-breakpoint, .min-width').remove();
-$form.trigger('submit');
+$controls.trigger('submit');
