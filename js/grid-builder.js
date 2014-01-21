@@ -1,9 +1,11 @@
 var
 	defaultPrefixes = ['xs', 's', 'm', 'l', 'xl'],
 	defaultMinWidths = [0, 25, 38, 60, 90],
-	breakpointCount = 1,
+	breakpointCount = 0,
 	breakpointTemplate = $('#breakpoint').html(),
 	$form = $('#form'),
+	$breakpoints = $('#breakpoints'),
+	$btnAdd = $('#btn-add-breakpoint'),
 	$output = $('#output'),
 	base = $('#grid-base').html(),
 	gridUnit = $('#grid-unit').html(),
@@ -67,7 +69,7 @@ $form.on('keyup change submit', function (e) {
 
 	e.preventDefault();
 
-	$form.children('.breakpoint').each(function () {
+	$breakpoints.children().each(function () {
 		var prefix = $(this).find('.prefix').val(),
 			columns = $(this).find('.columns').val(),
 			addOffsets = $(this).find('.add-offsets').is(':checked'),
@@ -89,15 +91,15 @@ $form.on('keyup change submit', function (e) {
 	$output.html(template.join(''));
 });
 
-$('#btn-add-breakpoint').on('click', function (e) {
+$btnAdd.on('click', function (e) {
 	var l = defaultMinWidths.length - 1,
 		minWidthIncrement = 20,
 		extra = (new Array(100)).join("x");
 
-	$form.append(
+	$breakpoints.append(
 		breakpointTemplate
 			.replace(/\{\{id\}\}/g, breakpointCount)
-			.replace('{{columns}}', $form.children('.breakpoint:last-child').find('.columns').val())
+			.replace('{{columns}}', $breakpoints.children('.breakpoint:last-child').find('.columns').val())
 			.replace('{{prefix}}', defaultPrefixes[breakpointCount] || extra.substr(0, breakpointCount - l) + defaultPrefixes[l])
 			.replace('{{min-width}}', defaultMinWidths[breakpointCount] || defaultMinWidths[l] + ((breakpointCount - l) * minWidthIncrement))
 	);
@@ -109,9 +111,12 @@ $('#btn-add-breakpoint').on('click', function (e) {
 
 $form.on('click', '.btn-remove-breakpoint', function (e) {
 	e.preventDefault();
-	$(this).parent().remove();
+	$(this).parent().parent().remove();
 	breakpointCount--;
 	$form.trigger('submit');
 });
 
+
+$btnAdd.trigger('click');
+$breakpoints.children().find('.btn-remove-breakpoint, .min-width').remove();
 $form.trigger('submit');

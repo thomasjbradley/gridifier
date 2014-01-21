@@ -8,21 +8,20 @@
 <body>
 
 <form id="form">
-	<div class="breakpoint">
-		<div class="form-group">
-			<label for="prefix-0">Prefix</label>
-			<input class="prefix" id="prefix-0" value="xs">
-		</div>
-		<div class="form-group">
-			<label for="columns-0">Columns</label>
-			<input class="columns" type="number" id="columns-0" value="4">
-		</div>
-		<div class="form-group">
-			<input class="add-offsets" type="checkbox" id="add-offsets-0" checked>
-			<label for="add-offsets-0">Add offsets</label>
-		</div>
-	</div>
+	<table>
+		<thead>
+			<tr>
+				<th scope="col" id="label-prefix">Prefix</th>
+				<th scope="col" id="label-columns">Columns</th>
+				<th scope="col" id="label-min-width">Min-width (em)</th>
+				<th scope="col" id="label-add-offset">Add Offsets</th>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody id="breakpoints"></tbody>
+	</table>
 </form>
+
 <div class="add-breakpoint">
 	<button id="btn-add-breakpoint">Add breakpoint</button>
 </div>
@@ -30,25 +29,23 @@
 <textarea id="output"></textarea>
 
 <script type="text/template" id="breakpoint" hidden>
-	<div class="breakpoint">
-		<div class="form-group">
-			<label for="prefix-{{id}}">Prefix</label>
-			<input class="prefix" id="prefix-{{id}}" value="{{prefix}}">
-		</div>
-		<div class="form-group">
-			<label for="columns-{{id}}">Columns</label>
-			<input class="columns" type="number" id="columns-{{id}}" value="{{columns}}">
-		</div>
-		<div class="form-group">
-			<label for="min-width-{{id}}">Min-width (em)</label>
-			<input class="min-width" type="number" id="min-width-{{id}}" value="{{min-width}}">
-		</div>
-		<div class="form-group">
-			<input class="add-offsets" type="checkbox" id="add-offsets-{{id}}" checked>
-			<label for="add-offsets-{{id}}">Add offsets</label>
-		</div>
-		<button class="btn-remove-breakpoint">Remove</button>
-	</div>
+	<tr class="breakpoint">
+		<td>
+			<input class="prefix" value="{{prefix}}" aria-labelledby="label-prefix">
+		</td>
+		<td>
+			<input class="columns" type="number" value="{{columns}}" aria-labelledby="label-columns">
+		</td>
+		<td>
+			<input class="min-width" type="number" value="{{min-width}}" aria-labelledby="label-min-width">
+		</td>
+		<td>
+			<input class="add-offsets" type="checkbox" checked aria-labelledby="label-add-offset">
+		</td>
+		<td>
+			<button class="btn-remove-breakpoint">Remove</button>
+		</td>
+	</tr>
 </script>
 
 <script type="text/template" id="grid-base" hidden>.grid {
