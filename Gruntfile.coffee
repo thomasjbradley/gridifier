@@ -38,13 +38,6 @@ module.exports = (grunt) ->
             'css/main.styl'
           ]
 
-    # coffee:
-    #   compile:
-    #     files:
-    #       'js/collaborating415.coffee.js': [
-    #         'js/*.coffee'
-    #       ]
-
     concat:
       dev:
         files:
@@ -69,17 +62,17 @@ module.exports = (grunt) ->
       stylus:
         options:
           livereload: false
-        files: ['css/*.styl']
+        files: ['css/*.styl', '!css/*.min.css']
         tasks: ['stylus']
       concat:
         options:
           livereload: false
-        files: ['js/*.js']
+        files: ['js/*.js', '!js/*.min.js']
         tasks: ['concat:dev']
       css:
-        files: ['css/*.css']
+        files: ['css/gridifier.min.css']
       js:
-        files: ['js/*.js']
+        files: ['js/gridifier.min.js']
       html:
         files: ['*.html']
 
@@ -87,9 +80,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'build', [
     'svgmin'
-    # 'imageoptim'
     'stylus'
-    # 'coffee'
     'concat'
     'uglify:prod'
   ]
