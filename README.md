@@ -14,6 +14,14 @@ This tool is introduced to the students after they learn the “long, hard, stup
 
 ---
 
+## Stylus
+
+There’s also a Stylus grid builder that outputs the same grid system:
+
+**[⬇ Download Stylus Component](https://gist.github.com/thomasjbradley/7186573)**
+
+---
+
 ## License
 
 Gridifier is licensed under the [New BSD license](LICENSE.txt).
