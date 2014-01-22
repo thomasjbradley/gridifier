@@ -31,10 +31,10 @@ var
 			previousWidths.push(newWidth);
 			unitNames.push(newClass);
 
-			output.push([newClass, ' { width: ', newWidth.toFixed(4), '%; }\n'].join(''))
+			output.push([newClass, ' {\n  width: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
 
 			if (addOffsets) {
-				output.push([newClassOffset, ' { margin-left: ', newWidth.toFixed(4), '%; }\n'].join(''))
+				output.push([newClassOffset, ' {\n  margin-left: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
 			}
 		}
 
@@ -78,13 +78,13 @@ $controls.on('keyup change submit', function (e) {
 			minWidth = 0;
 
 		if (hasMinWidth) {
-			template.push(['@media only screen and (min-width: ', $minWidth.val(), 'em) {\n'].join(''));
+			template.push(['\n@media only screen and (min-width: ', $minWidth.val(), 'em) {\n\n'].join(''));
 		}
 
 		template = template.concat(gridUnits(prefix, columns, addOffsets));
 
 		if (hasMinWidth) {
-			template.push('}\n');
+			template.push('\n}\n');
 		}
 	});
 
