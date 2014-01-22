@@ -1,6 +1,6 @@
 # Gridifier
 
-Gridifier is a tool to build a responsive grid framework for modern websites.
+[Gridifier](http://tjb.io/grids) is a tool to build a responsive grid framework for modern websites.
 
 ---
 
