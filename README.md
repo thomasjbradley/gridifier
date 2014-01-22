@@ -22,6 +22,16 @@ There’s also a Stylus grid builder that outputs the same grid system:
 
 ---
 
+## Inspiration
+
+The final grid is a combination of techniques popularized by:
+
+- [YUI Grid Builder](http://yui.github.io/gridbuilder/)
+- [Bootstrap](http://getbootstrap.com/)
+- [Foundation](http://foundation.zurb.com/)
+
+---
+
 ## License
 
 Gridifier is licensed under the [New BSD license](LICENSE.txt).

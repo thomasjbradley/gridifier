@@ -10,13 +10,6 @@ Location: Ottawa, Canada
 
 ---
 
-# THANKS
-
-Yahoo YUI Grid Builder for the basic grid set-up.
-http://yui.github.io/gridbuilder/
-
----
-
 # TECHNOLOGY
 
 ## Software
