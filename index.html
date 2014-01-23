@@ -25,6 +25,11 @@
       </thead>
       <tbody id="breakpoints"></tbody>
     </table>
+    <div class="extra-options">
+      <strong class="options-title">Legacy support</strong>
+      <input type="checkbox" id="legacy">
+      <label for="legacy">IE &lt;= 7</label>
+    </div>
   </form>
 
   <div class="add-breakpoint">
@@ -32,8 +37,8 @@
   </div>
 </main>
 
-<div class="output">
-  <textarea id="output"></textarea>
+<div class="output has-options">
+  <textarea id="output" spellcheck="false"></textarea>
 </div>
 
 <aside class="common-bar" role="complementary">
@@ -50,7 +55,7 @@
   </ul>
 </aside>
 
-<script type="text/template" id="breakpoint">
+<script type="text/template" data-template="breakpoint">
   <tr class="breakpoint">
     <td colspan="6">
       <input class="prefix" value="{{prefix}}" aria-labelledby="label-prefix">
@@ -70,13 +75,15 @@
   </tr>
 </script>
 
-<script type="text/template" id="grid-base">.grid {
+<script type="text/template" data-template="grid-base">.grid {
   margin: 0;
   padding: 0;
   letter-spacing: -0.31em;
+  text-rendering: optimizespeed;
+{{legacy}}
   *letter-spacing: normal;
   *word-spacing: -0.43em;
-  text-rendering: optimizespeed;
+{{/legacy}}
 }
 
 .opera-only :-o-prefocus, .grid {
@@ -84,33 +91,45 @@
 }
 
 .unit {
-  {{grid-unit}}
-  zoom: 1;
   letter-spacing: normal;
   text-rendering: auto;
   vertical-align: top;
   word-spacing: normal;
+  {{grid-unit}}
+{{legacy}}
+  zoom: 1;
+{{/legacy}}
 }
 
 </script>
 
-<script type="text/template" id="grid-unit">display: inline-block;
+<script type="text/template" data-template="grid-unit">display: inline-block;
+  visibility: visible;
+{{legacy}}
   *display: inline;
-  visibility: visible;</script>
+{{/legacy}}</script>
 
-<script type="text/template" id="grid-unit-hidden">.unit-{{prefix}}-hidden {
+<script type="text/template" data-template="grid-unit-hidden">.unit-{{prefix}}-hidden {
   display: none;
   visibility: hidden;
 }
 
 </script>
 
-<script type="text/template" id="grid-unit-1">.unit-{{prefix}}-1 {
+<script type="text/template" data-template="grid-unit-1">.unit-{{prefix}}-1 {
   display: block;
   visibility: visible;
   width: 100%;
 }
 
+</script>
+
+<script type="text/template" data-template="media-query">
+@media only screen and (min-width: {{min-width}}em) {
+
+{{css}}
+
+}
 </script>
 
 <script src="js/gridifier.min.js"></script>

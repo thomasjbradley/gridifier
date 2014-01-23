@@ -14,6 +14,7 @@ body
 .main
   bottom 3.5rem
   left 0
+  overflow-x hidden
   overflow-y auto
   position absolute
   padding 1em
@@ -29,6 +30,27 @@ body
 
   background-color interface-grey
   border-left 1px solid interface-grey-dark
+
+.has-options
+  bottom 7rem
+
+.extra-options
+  bottom 3.5rem
+  height 3.5rem
+  padding 1em
+  position fixed
+  right 0
+  width 50%
+
+  background-color interface-grey
+  border-left 1px solid interface-grey-dark
+  border-top 1px solid interface-grey-dark
+
+  color #666
+
+.options-title
+  display inline-block
+  margin-right 1.5rem
 
 textarea
   padding 1em
@@ -64,7 +86,6 @@ tr
 
 input
   padding 0.25em
-  vertical-align middle
   width 85%
 
   border 1px solid interface-grey-dark

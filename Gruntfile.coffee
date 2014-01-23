@@ -46,12 +46,14 @@ module.exports = (grunt) ->
         files:
           'js/gridifier.min.js': [
             'js/jquery-2.0.3.min.js'
+            'js/templates.js'
             'js/main.js'
           ]
       prod:
         files:
           'js/gridifier.min.js': [
             'js/jquery-2.0.3.min.js'
+            'js/templates.min.js'
             'js/main.min.js'
           ]
 
