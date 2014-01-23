@@ -12,7 +12,6 @@
   top 0
 
   background-color rgba(0,0,0,.3)
-  transition opacity 200ms linear
 
 .help
   left 50%
@@ -27,25 +26,48 @@
   box-shadow 0 2px 10px rgba(0,0,0,.5)
 
 .help__close
+.help__open
   height 32px
-  right -16px
   position absolute
-  top -16px
   width 32px
 
-  background-color #999
-  border 3px solid #fff
   border-radius 16px
-  box-shadow 0 1px 3px rgba(0,0,0,0.5)
   cursor pointer
 
   color #fff
+  font-weight bold
+  text-align center
+
+.help__open
+  top 0.75rem
+
+  background-color #999
+  border 1px solid #666
+
+  color #ddd
+  line-height 0.9
+
+.help__close
+  right -16px
+  top -16px
+
+  background-color #999
+  border 3px solid #fff
+  box-shadow 0 1px 3px rgba(0,0,0,0.5)
+
   line-height 0.7
+
+.help__open:hover
+  background-color help-purple
+  border-color darken(help-purple, 50%)
+
+  color #fff
 
 .help__close:hover
   background-color #000
 
 .help__close:focus
+.help__open:focus
   outline 2px solid #000
 
 .help__buttons

@@ -3,7 +3,7 @@ var prepareTemplate = (function (doc) {
   var templateCache = {};
 
   return function prepareTemplate (template, searchAndReplaces) {
-    var temp, val, tagOpen, tagClose, tagCombined, regexOpen, regexClose, regexCombined;
+    var temp, val, tagOpen, tagClose, tagCombined;
 
     if (templateCache[template]) {
       output = templateCache[template];
