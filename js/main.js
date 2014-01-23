@@ -23,7 +23,7 @@ var
 			newClassOffset = ['.unit-offset', prefix, size, cols].join('-'),
 			output = [];
 
-		previousWidths.forEach(function (item, index, array) {
+		previousWidths.forEach(function (item) {
 			if (newWidth == item) newUnit = false;
 		});
 
@@ -74,8 +74,7 @@ $controls.on('keyup change submit', function (e) {
 			columns = $(this).find('.columns').val(),
 			addOffsets = $(this).find('.add-offsets').is(':checked'),
 			$minWidth = $(this).find('.min-width'),
-			hasMinWidth = $minWidth.length,
-			minWidth = 0;
+			hasMinWidth = $minWidth.length;
 
 		if (hasMinWidth) {
 			template.push(['\n@media only screen and (min-width: ', $minWidth.val(), 'em) {\n\n'].join(''));
@@ -91,7 +90,7 @@ $controls.on('keyup change submit', function (e) {
 	$output.html(template.join(''));
 });
 
-$btnAdd.on('click', function (e) {
+$btnAdd.on('click', function () {
 	var l = defaultMinWidths.length - 1,
 		minWidthIncrement = 20,
 		extra = (new Array(100)).join("x");

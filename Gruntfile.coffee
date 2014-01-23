@@ -39,22 +39,35 @@ module.exports = (grunt) ->
           ]
 
     concat:
+      options:
+        process: (src, filepath) ->
+          return '// ' + filepath + '\n' + src
       dev:
         files:
           'js/gridifier.min.js': [
+            'js/jquery-2.0.3.min.js'
             'js/main.js'
+          ]
+      prod:
+        files:
+          'js/gridifier.min.js': [
+            'js/jquery-2.0.3.min.js'
+            'js/main.min.js'
           ]
 
     uglify:
-      prod:
+      all:
         options:
           mangle: true
           compress: true
           preserveComments: 'some'
-        files:
-          'js/gridifier.min.js': [
-            'js/main.js'
-          ]
+        files: [
+          expand: true
+          cwd: 'js/'
+          src: ['*.js', '!*.min.js']
+          dest: 'js/'
+          ext: '.min.js'
+        ]
 
     watch:
       options:
@@ -81,8 +94,8 @@ module.exports = (grunt) ->
   grunt.registerTask 'build', [
     'svgmin'
     'stylus'
-    'concat'
-    'uglify:prod'
+    'uglify'
+    'concat:prod'
   ]
 
   grunt.registerTask 'default', [
