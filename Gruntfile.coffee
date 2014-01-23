@@ -48,6 +48,7 @@ module.exports = (grunt) ->
             'js/jquery-2.0.3.min.js'
             'js/templates.js'
             'js/main.js'
+            'js/help.js'
           ]
       prod:
         files:
@@ -55,6 +56,7 @@ module.exports = (grunt) ->
             'js/jquery-2.0.3.min.js'
             'js/templates.min.js'
             'js/main.min.js'
+            'js/help.min.js'
           ]
 
     uglify:
