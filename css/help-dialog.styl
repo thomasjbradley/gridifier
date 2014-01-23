@@ -1,0 +1,92 @@
+.help-dialog
+  opacity 0
+
+.help-dialog[data-state="open"]
+  opacity 1
+
+.help-backdrop
+  bottom 0
+  left 0
+  position fixed
+  right 0
+  top 0
+
+  background-color rgba(0,0,0,.3)
+  transition opacity 250ms linear
+
+.help
+  left 50%
+  margin-left -13rem
+  position fixed
+  padding 1.5rem
+  top 3rem
+  width 26rem
+
+  background-color #fff
+  border 5px solid interface-grey-dark
+  box-shadow 0 2px 10px rgba(0,0,0,.5)
+
+.help__buttons
+  padding-bottom 1.5rem
+
+  border-bottom 1px solid interface-grey
+
+  text-align center
+
+.btn-icon
+.btn-icon:link
+.btn-icon:visited
+  margin 0 0.5rem
+
+  background-size auto 90%
+  background-repeat no-repeat
+
+.btn-tutorials
+.btn-tutorials:link
+.btn-tutorials:visited
+  padding-left 2.8em
+
+  background-image embedurl("../img/i-paper.svg")
+  background-position 0.4em center
+
+.btn-tutorials:hover
+.btn-tutorials:focus
+.btn-tutorials:active
+  background-image embedurl("../img/i-paper-white.svg")
+
+.btn-videos
+.btn-videos:link
+.btn-videos:visited
+  padding-left 3.6em
+
+  background-image embedurl("../img/i-youtube.svg")
+  background-position 0.8em center
+
+.btn-videos:hover
+.btn-videos:focus
+.btn-videos:active
+  background-image embedurl("../img/i-youtube-white.svg")
+
+.left
+  float left
+  width 50%
+
+.right
+  float right
+  width 50%
+
+.help-color
+  color help-purple
+
+.help-link
+.help-link:link
+.help-link:visited
+  border-bottom-color rgba(help-purple, 0.4)
+
+  color help-purple
+
+.help-btn:hover
+.help-btn:focus
+.help-btn:active
+  background-color help-purple
+  border-color darken(help-purple, 50%)

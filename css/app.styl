@@ -100,7 +100,17 @@ input[type="checkbox"]
 
   cursor pointer
 
+a
+a:link
+a:visited
+  border-bottom 0.1em solid rgba(blue, 0.3)
+
+  color blue
+  text-decoration none
+
 .btn
+.btn:link
+.btn:visited
   display inline-block
   padding 0.5em 1em
 
@@ -108,10 +118,11 @@ input[type="checkbox"]
   border 1px solid interface-grey-dark
   border-radius 6px
   cursor pointer
-  transition all 70ms linear
+  transition border-color 70ms linear, background-color 70ms linear, color 70ms linear
 
   color #000
   font bold 100%/1.5 brand-family
+  text-decoration none
 
 .btn::before
   color #000
