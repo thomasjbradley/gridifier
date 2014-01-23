@@ -1,4 +1,4 @@
-var prepareTemplate = (function ($) {
+var prepareTemplate = (function (doc) {
 
   var templateCache = {};
 
@@ -8,11 +8,11 @@ var prepareTemplate = (function ($) {
     if (templateCache[template]) {
       output = templateCache[template];
     } else {
-      temp = $('[data-template="' + template + '"]')
+      temp = doc.querySelector('[data-template="' + template + '"]')
 
-      if (temp.length <= 0) throw 'Template doesn’t exist: ' + template;
+      if (!temp) throw 'Template doesn’t exist: ' + template;
 
-      output = templateCache[template] = temp.html();
+      output = templateCache[template] = temp.innerHTML;
     }
 
     if (searchAndReplaces) {
@@ -39,4 +39,4 @@ var prepareTemplate = (function ($) {
     return output;
   };
 
-}(jQuery));
+}(document));
