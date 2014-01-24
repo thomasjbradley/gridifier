@@ -14,6 +14,42 @@ This tool is introduced to the students after they learn the “long, hard, stup
 
 ---
 
+## Common Problems
+
+Sometimes when using a custom webfont for the body copy it can wreak a little havoc on the grid system.
+
+This is documented on the [Pure documentation](http://purecss.io/grids/#using-grids-with-custom-fonts), this [pull request](https://github.com/yui/pure/issues/41/), & the [Pure grid CSS file](https://github.com/yui/pure/blob/master/src/grids/css/grids-core.css).
+
+### Solution
+
+**1. Define your custom font on `html` as usual:**
+
+```css
+html {
+	font-family: "Custom Font", serif;
+}
+```
+
+**2. Define this default set font families on `.grid`:**
+
+```css
+.grid {
+	⋮
+	font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+}
+```
+
+**3. Redefine your custom font on `.unit`:**
+
+```css
+.unit {
+	⋮
+	font-family: "Custom Font", serif;
+}
+```
+
+---
+
 ## Stylus
 
 There’s also a Stylus grid builder that outputs the same grid system:
@@ -25,3 +61,5 @@ There’s also a Stylus grid builder that outputs the same grid system:
 ## License
 
 Gridifier is licensed under the [New BSD license](LICENSE.txt).
+
+Some of the output code is copyright [Yahoo! Inc.](http://purecss.io/)
