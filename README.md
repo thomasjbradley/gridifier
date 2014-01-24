@@ -63,3 +63,5 @@ There’s also a Stylus grid builder that outputs the same grid system:
 Gridifier is licensed under the [New BSD license](LICENSE.txt).
 
 Some of the output code is copyright [Yahoo! Inc.](http://purecss.io/)
+
+[Paper icon](http://thenounproject.com/term/paper/29062/) copyright Yazmin Alanis.

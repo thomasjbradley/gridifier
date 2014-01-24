@@ -12,7 +12,9 @@ Location: Ottawa, Canada
 
 # THANKS
 
-Paper icon by Yazmin Alanis <http://thenounproject.com/term/paper/29062/>
+Some of the output code is copyright [Yahoo! Inc.](http://purecss.io/)
+
+[Paper icon](http://thenounproject.com/term/paper/29062/) copyright Yazmin Alanis.
 
 ---
 
