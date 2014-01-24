@@ -15,7 +15,7 @@ var
     vals.legacy = $legacy.is(':checked');
 
     return prepareTemplate(name, vals);
-  }
+  },
 
   gridUnitWidth = function gridUnitWidth (size, cols) {
     return (size / cols) * 100;

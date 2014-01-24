@@ -21,7 +21,7 @@ var prepareTemplate = (function (doc) {
           val = searchAndReplaces[key];
           tagOpen = '{{' + key + '}}\n?';
           tagClose = '{{/' + key + '}}\n?';
-          tagCombined = tagOpen + '[^{]+' + tagClose + '\n?';
+          tagCombined = tagOpen + '(.|\n|\r)+?' + tagClose + '\n?';
 
           if (val === true || val === false) {
             if (val === true) {
