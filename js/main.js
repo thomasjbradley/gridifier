@@ -58,6 +58,10 @@ var
     output.push(view('grid-unit-hidden', {'prefix': prefix}));
     output.push(view('grid-unit-1', {'prefix': prefix}));
 
+    if(addOffsets) {
+      output.push(view('grid-unit-offset-0', {'prefix': prefix}));
+    }
+
     for (i = 2; i <= cols; i++) {
       for (j = 1; j <= i; j++) {
         output = output.concat(gridUnitSingle(prefix, j, i, previousWidths, unitNames, addOffsets));
