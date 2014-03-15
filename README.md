@@ -4,7 +4,7 @@
 
 ---
 
-### [☛ Grid system tutorial](https://github.com/algonquindesign/html-css/tree/master/grids)
+### [☛ Grid system tutorial](https://github.com/algonquindesign/html-css/tree/gh-pages/grids)
 
 ### [☛ Videos for grids](https://www.youtube.com/playlist?list=PLWjCJDeWfDdeUChfM6TV2U7jzQVRjsu60)
 
