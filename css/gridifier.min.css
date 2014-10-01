@@ -100,7 +100,7 @@ body{bottom:0;overflow:hidden;position:absolute;top:0;width:100%}
 .has-options{bottom:7rem}
 .extra-options{bottom:3.5rem;height:3.5rem;padding:1em;position:fixed;right:0;width:50%;background-color:#f2f2f2;border-left:1px solid #ccc;border-top:1px solid #ccc;color:#666}
 .options-title{display:inline-block;margin-right:1.5rem}
-textarea{padding:1em;height:100%;width:100%;background-color:transparent;border:0;font:normal 100%/1.5 Menlo,Consolas,serif}
+textarea{padding:1em;height:100%;width:100%;background-color:transparent;border:0;resize:none;font:normal 100%/1.5 Menlo,Consolas,serif}
 textarea:focus{outline:2px solid #000}
 table{width:100%;border-collapse:collapse;table-layout:fixed}
 th,td{padding:.75rem 0;vertical-align:middle;text-align:left}
