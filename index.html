@@ -16,10 +16,11 @@
     <table>
       <thead>
         <tr>
-          <th scope="col" id="label-prefix" colspan="6">Prefix</th>
-          <th scope="col" id="label-columns" colspan="6">Columns</th>
-          <th scope="col" id="label-min-width" colspan="6">Min-width&nbsp;(em)</th>
+          <th scope="col" id="label-prefix" colspan="4">Prefix</th>
+          <th scope="col" id="label-columns" colspan="4">Columns</th>
+          <th scope="col" id="label-min-width" colspan="6">Breakpoint</th>
           <th scope="col" id="label-add-offset" colspan="4">Offsets?</th>
+          <th scope="col" id="label-add-push-pull" colspan="4">Push/Pull?</th>
           <td colspan="2"></td>
         </tr>
       </thead>
@@ -105,17 +106,21 @@
 
 <script type="text/template" data-template="breakpoint">
   <tr class="breakpoint">
-    <td colspan="6">
+    <td colspan="4">
       <input class="prefix" value="{{prefix}}" aria-labelledby="label-prefix">
     </td>
-    <td colspan="6">
+    <td colspan="4">
       <input class="columns" type="number" value="{{columns}}" aria-labelledby="label-columns">
     </td>
-    <td colspan="6">
+    <td colspan="6" class="breakpoint-em">
       <input class="min-width" type="number" value="{{min-width}}" aria-labelledby="label-min-width">
+      <span class="em">em</span>
     </td>
     <td colspan="4">
       <input class="add-offsets" type="checkbox" checked aria-labelledby="label-add-offset">
+    </td>
+    <td colspan="4">
+      <input class="add-push-pull" type="checkbox" checked aria-labelledby="label-add-push-pull">
     </td>
     <td colspan="2">
       <button class="btn btn-fatal btn-remove-breakpoint" title="Remove breakpoint"><span class="ir">Remove</span></button>
@@ -181,6 +186,11 @@
   vertical-align: middle;
 }
 
+.unit[class*="push-"],
+.unit[class*="pull-"] {
+  position: relative;
+}
+
 </script>
 
 <script type="text/template" data-template="grid-unit">display: inline-block;
@@ -210,6 +220,13 @@
 
 <script type="text/template" data-template="grid-unit-offset-0">.unit-offset-{{prefix}}-0 {
   margin-left: 0;
+}
+
+</script>
+
+<script type="text/template" data-template="grid-unit-push-pull-0">.unit-push-{{prefix}}-0,
+.unit-pull-{{prefix}}-0 {
+  left: 0;
 }
 
 </script>

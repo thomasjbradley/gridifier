@@ -21,11 +21,13 @@ var
     return (size / cols) * 100;
   },
 
-  gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths, unitNames, addOffsets) {
+  gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths, unitNames, addOffsets, addPushPull) {
     var newUnit = true,
       newWidth = gridUnitWidth(size, cols),
       newClass = ['.unit', prefix, size, cols].join('-'),
       newClassOffset = ['.unit-offset', prefix, size, cols].join('-'),
+      newClassPush = ['.unit-push', prefix, size, cols].join('-'),
+      newClassPull = ['.unit-pull', prefix, size, cols].join('-'),
       output = [];
 
     previousWidths.forEach(function (item) {
@@ -41,12 +43,17 @@ var
       if (addOffsets) {
         output.push([newClassOffset, ' {\n  margin-left: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
       }
+
+      if (addPushPull) {
+        output.push([newClassPush, ' {\n  left: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
+        output.push([newClassPull, ' {\n  left: -', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
+      }
     }
 
     return output;
   },
 
-  gridUnits = function gridUnits (prefix, cols, addOffsets) {
+  gridUnits = function gridUnits (prefix, cols, addOffsets, addPushPull) {
     var previousWidths = [100],
       unitNames = [],
       output = [],
@@ -62,9 +69,13 @@ var
       output.push(view('grid-unit-offset-0', {'prefix': prefix}));
     }
 
+    if(addPushPull) {
+      output.push(view('grid-unit-push-pull-0', {'prefix': prefix}));
+    }
+
     for (i = 2; i <= cols; i++) {
       for (j = 1; j <= i; j++) {
-        output = output.concat(gridUnitSingle(prefix, j, i, previousWidths, unitNames, addOffsets));
+        output = output.concat(gridUnitSingle(prefix, j, i, previousWidths, unitNames, addOffsets, addPushPull));
       }
     }
 
@@ -82,6 +93,7 @@ $controls.on('keyup change submit', function (e) {
     var prefix = $(this).find('.prefix').val(),
       columns = $(this).find('.columns').val(),
       addOffsets = $(this).find('.add-offsets').is(':checked'),
+      addPushPull = $(this).find('.add-push-pull').is(':checked'),
       $minWidth = $(this).find('.min-width'),
       hasMinWidth = $minWidth.length;
 
@@ -89,11 +101,11 @@ $controls.on('keyup change submit', function (e) {
       template.push(
         view('media-query', {
             'min-width': $minWidth.val(),
-            'css': gridUnits(prefix, columns, addOffsets).join('')
+            'css': gridUnits(prefix, columns, addOffsets, addPushPull).join('')
           })
       );
     } else {
-      template = template.concat(gridUnits(prefix, columns, addOffsets));
+      template = template.concat(gridUnits(prefix, columns, addOffsets, addPushPull));
     }
   });
 
@@ -126,5 +138,5 @@ $controls.on('click', '.btn-remove-breakpoint', function (e) {
 });
 
 $btnAdd.trigger('click');
-$breakpoints.children().find('.btn-remove-breakpoint, .min-width').remove();
+$breakpoints.children().find('.btn-remove-breakpoint, .min-width, .em').remove();
 $controls.trigger('submit');
