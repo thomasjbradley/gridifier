@@ -55,7 +55,7 @@ var
 
     if (cols < 3) cols = 3;
 
-    output.push(view('grid-unit-hidden', {'prefix': prefix}));
+    output.push(view('grid-unit-all-sizes', {'prefix': prefix}));
     output.push(view('grid-unit-1', {'prefix': prefix}));
 
     if(addOffsets) {
