@@ -132,6 +132,8 @@
   -webkit-flex-flow: row wrap;
   display: -ms-flexbox;
   -ms-flex-flow: row wrap;
+  display: flex;
+  flex-flow: row wrap;
 {{legacy}}
   *letter-spacing: normal;
   *word-spacing: -0.43em;
@@ -141,11 +143,19 @@
 .grid-bottom {
   -webkit-align-items: flex-end;
   -ms-align-items: flex-end;
+  align-items: flex-end;
 }
 
 .grid-middle {
   -webkit-align-items: center;
   -ms-align-items: center;
+  align-items: center;
+}
+
+.grid-stretch {
+  -webkit-align-items: stretch;
+  -ms-align-items: stretch;
+  align-items: stretch;
 }
 
 .opera-only :-o-prefocus, .grid {
