@@ -24,7 +24,7 @@ var
   gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths, unitNames, addOffsets, addPushPull) {
     var newUnit = true,
       newWidth = gridUnitWidth(size, cols),
-      newClass = ['.unit', prefix, size, cols].join('-'),
+      newClass = [['.unit', prefix, size, cols].join('-'), [prefix, size, cols].join('-')].join(', .'),
       newClassOffset = ['.unit-offset', prefix, size, cols].join('-'),
       newClassPush = ['.unit-push', prefix, size, cols].join('-'),
       newClassPull = ['.unit-pull', prefix, size, cols].join('-'),
@@ -79,7 +79,7 @@ var
       }
     }
 
-    output.push([unitNames.join(','), ' {\n  ', view('grid-unit'), '}\n'].join(''));
+    output.push([unitNames.join(',').replace(/ /g, ''), ' {\n  ', view('grid-unit'), '}\n'].join(''));
 
     return output;
   };
