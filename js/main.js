@@ -85,7 +85,7 @@ var
   };
 
 $controls.on('keyup change submit', function (e) {
-  var template = [view('grid-base', {'grid-unit': view('grid-unit')})];
+  var gridPieces = [], output = '';
 
   e.preventDefault();
 
@@ -98,18 +98,23 @@ $controls.on('keyup change submit', function (e) {
       hasMinWidth = $minWidth.length;
 
     if (hasMinWidth) {
-      template.push(
+      gridPieces.push(
         view('media-query', {
             'min-width': $minWidth.val(),
             'css': gridUnits(prefix, columns, addOffsets, addPushPull).join('')
           })
       );
     } else {
-      template = template.concat(gridUnits(prefix, columns, addOffsets, addPushPull));
+      gridPieces = gridPieces.concat(gridUnits(prefix, columns, addOffsets, addPushPull));
     }
   });
 
-  $output.html(template.join(''));
+  output = [view('grid-base', {
+    'grid-unit': view('grid-unit'),
+    'main': gridPieces.join('')
+  })];
+
+  $output.html(output);
 });
 
 $btnAdd.on('click', function () {
