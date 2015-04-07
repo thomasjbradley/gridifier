@@ -144,4 +144,7 @@ $controls.on('click', '.btn-remove-breakpoint', function (e) {
 
 $btnAdd.trigger('click');
 $breakpoints.children().find('.btn-remove-breakpoint, .min-width, .em').remove();
-$controls.trigger('submit');
+$btnAdd.trigger('click');
+$btnAdd.trigger('click');
+$btnAdd.trigger('click');
+// $controls.trigger('submit');

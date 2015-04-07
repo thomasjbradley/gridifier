@@ -62,8 +62,6 @@ module.exports = (grunt) ->
     uglify:
       all:
         options:
-          mangle: true
-          compress: true
           preserveComments: 'some'
         files: [
           expand: true
