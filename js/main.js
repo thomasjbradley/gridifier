@@ -143,6 +143,7 @@ $controls.on('click', '.btn-remove-breakpoint', function (e) {
 });
 
 $btnAdd.trigger('click');
+$breakpoints.find('.breakpoint-em').html('<span class="infinite">∞</span>');
 $breakpoints.children().find('.btn-remove-breakpoint, .min-width, .em').remove();
 $btnAdd.trigger('click');
 $btnAdd.trigger('click');
