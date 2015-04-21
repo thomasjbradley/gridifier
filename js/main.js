@@ -90,8 +90,8 @@ $controls.on('keyup change submit', function (e) {
   e.preventDefault();
 
   $breakpoints.children().each(function () {
-    var prefix = $(this).find('.prefix').val(),
-      columns = $(this).find('.columns').val(),
+    var prefix = $.trim($(this).find('.prefix').val()),
+      columns = $.trim($(this).find('.columns').val()),
       addOffsets = $(this).find('.add-offsets').is(':checked'),
       addPushPull = $(this).find('.add-push-pull').is(':checked'),
       $minWidth = $(this).find('.min-width'),
@@ -100,7 +100,7 @@ $controls.on('keyup change submit', function (e) {
     if (hasMinWidth) {
       gridPieces.push(
         view('media-query', {
-            'min-width': $minWidth.val(),
+            'min-width': $.trim($minWidth.val()),
             'css': gridUnits(prefix, columns, addOffsets, addPushPull).join('')
           })
       );
@@ -124,7 +124,7 @@ $btnAdd.on('click', function () {
 
   $breakpoints.append(view('breakpoint', {
       'id': breakpointCount,
-      'columns': $breakpoints.children('.breakpoint:last-child').find('.columns').val() || 4,
+      'columns': $.trim($breakpoints.children('.breakpoint:last-child').find('.columns').val()) || 4,
       'prefix': defaultPrefixes[breakpointCount] || extra.substr(0, breakpointCount - l) + defaultPrefixes[l],
       'min-width': defaultMinWidths[breakpointCount] || defaultMinWidths[l] + ((breakpointCount - l) * minWidthIncrement)
     })
