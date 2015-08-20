@@ -1,6 +1,12 @@
 var
-  defaultPrefixes = ['xs', 's', 'm', 'l', 'xl'],
-  defaultMinWidths = [0, 25, 38, 60, 90],
+  hash = window.location.hash,
+  hashBits,
+  defaults = [
+    ['xs', 4, 0, 1, 1],
+    ['s', 4, 25, 1, 1],
+    ['m', 4, 38, 1, 1],
+    ['l', 4, 60, 1, 1]
+  ],
   breakpointCount = 0,
 
   $controls = $('#controls'),
@@ -118,15 +124,31 @@ $controls.on('keyup change submit', function (e) {
 });
 
 $btnAdd.on('click', function () {
-  var l = defaultMinWidths.length - 1,
+  var
     minWidthIncrement = 20,
-    extra = (new Array(100)).join("x");
+    extra = (new Array(100)).join("x"),
+    data = []
+  ;
+
+  if (defaults[breakpointCount]) {
+    data = defaults[breakpointCount];
+  } else {
+    data = [
+      extra.substr(0, breakpointCount - (defaults.length - 1)) + defaults[defaults.length - 1][0],
+      defaults[defaults.length - 1][1],
+      defaults[defaults.length - 1][2] + (breakpointCount - (defaults.length - 1)) * minWidthIncrement,
+      defaults[defaults.length - 1][3],
+      defaults[defaults.length - 1][4]
+    ];
+  }
 
   $breakpoints.append(view('breakpoint', {
       'id': breakpointCount,
-      'columns': $.trim($breakpoints.children('.breakpoint:last-child').find('.columns').val()) || 4,
-      'prefix': defaultPrefixes[breakpointCount] || extra.substr(0, breakpointCount - l) + defaultPrefixes[l],
-      'min-width': defaultMinWidths[breakpointCount] || defaultMinWidths[l] + ((breakpointCount - l) * minWidthIncrement)
+      'prefix': data[0],
+      'columns': data[1],
+      'min-width': data[2],
+      'offsets': data[3] ? 'checked' : '',
+      'push-pull': data[4] ? 'checked' : ''
     })
   );
 
@@ -142,10 +164,25 @@ $controls.on('click', '.btn-remove-breakpoint', function (e) {
   $controls.trigger('submit');
 });
 
-$btnAdd.trigger('click');
-$breakpoints.find('.breakpoint-em').html('<span class="infinite">∞</span>');
-$breakpoints.children().find('.btn-remove-breakpoint, .min-width, .em').remove();
-$btnAdd.trigger('click');
-$btnAdd.trigger('click');
-$btnAdd.trigger('click');
-// $controls.trigger('submit');
+// $btnAdd.trigger('click');
+// $breakpoints.find('.breakpoint-em').html('<span class="infinite">∞</span>');
+// $breakpoints.children().find('.btn-remove-breakpoint, .min-width, .em').remove();
+// $btnAdd.trigger('click');
+// $btnAdd.trigger('click');
+// $btnAdd.trigger('click');
+
+if (hash) {
+  hashBits = hash.split(';');
+  defaults = [];
+
+  hashBits.forEach(function (item) {
+    defaults.push(item.split(','));
+  });
+}
+
+defaults.forEach(function() {
+  $btnAdd.trigger('click');
+});
+
+$breakpoints.find('.breakpoint:first-child .breakpoint-em').html('<span class="infinite">∞</span>');
+$breakpoints.find('.breakpoint:first-child .btn-remove-breakpoint').remove();
