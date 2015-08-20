@@ -1,9 +1,9 @@
 var
-  hash = window.location.hash,
+  hash = window.location.hash.replace(/#/, ''),
   hashBits,
   defaults = [
-    ['xs', 4, 0, 1, 1],
-    ['s', 4, 25, 1, 1],
+    ['xs', 4, 0, 0, 0],
+    ['s', 4, 25, 0, 0],
     ['m', 4, 38, 1, 1],
     ['l', 4, 60, 1, 1]
   ],
@@ -28,13 +28,15 @@ var
   },
 
   gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths, unitNames, addOffsets, addPushPull) {
-    var newUnit = true,
+    var
+      newUnit = true,
       newWidth = gridUnitWidth(size, cols),
       newClass = [['.unit', prefix, size, cols].join('-'), [prefix, size, cols].join('-')].join(', .'),
       newClassOffset = ['.unit-offset', prefix, size, cols].join('-'),
       newClassPush = ['.unit-push', prefix, size, cols].join('-'),
       newClassPull = ['.unit-pull', prefix, size, cols].join('-'),
-      output = [];
+      output = []
+    ;
 
     previousWidths.forEach(function (item) {
       if (newWidth == item) newUnit = false;
@@ -60,11 +62,13 @@ var
   },
 
   gridUnits = function gridUnits (prefix, cols, addOffsets, addPushPull) {
-    var previousWidths = [100],
+    var
+      previousWidths = [100],
       unitNames = [],
       output = [],
       i = 2,
-      j = 1;
+      j = 1
+    ;
 
     if (cols < 3) cols = 3;
 
@@ -91,7 +95,11 @@ var
   };
 
 $controls.on('keyup change submit', function (e) {
-  var gridPieces = [], output = '';
+  var
+    gridPieces = [],
+    output = '',
+    buildHash = []
+  ;
 
   e.preventDefault();
 
@@ -100,27 +108,32 @@ $controls.on('keyup change submit', function (e) {
       columns = $.trim($(this).find('.columns').val()),
       addOffsets = $(this).find('.add-offsets').is(':checked'),
       addPushPull = $(this).find('.add-push-pull').is(':checked'),
-      $minWidth = $(this).find('.min-width'),
-      hasMinWidth = $minWidth.length;
+      minWidthVal = $.trim($(this).find('.min-width').val()),
+      hasMinWidth = (parseInt(minWidthVal, 10) > 0)
 
     if (hasMinWidth) {
+      buildHash.push([prefix, columns, minWidthVal, addOffsets ? 1 : 0, addPushPull ? 1 : 0]);
+
       gridPieces.push(
         view('media-query', {
-            'min-width': $.trim($minWidth.val()),
+            'min-width': minWidthVal,
             'css': gridUnits(prefix, columns, addOffsets, addPushPull).join('')
           })
       );
     } else {
+      buildHash.push([prefix, columns, 0, addOffsets ? 1 : 0, addPushPull ? 1 : 0]);
       gridPieces = gridPieces.concat(gridUnits(prefix, columns, addOffsets, addPushPull));
     }
   });
 
   output = [view('grid-base', {
+    'build': window.location.protocol + '//' + window.location.host + window.location.pathname + '#' + buildHash.join(';'),
     'grid-unit': view('grid-unit'),
     'main': gridPieces.join('')
   })];
 
   $output.html(output);
+  window.location.hash = buildHash.join(';');
 });
 
 $btnAdd.on('click', function () {
@@ -164,19 +177,16 @@ $controls.on('click', '.btn-remove-breakpoint', function (e) {
   $controls.trigger('submit');
 });
 
-// $btnAdd.trigger('click');
-// $breakpoints.find('.breakpoint-em').html('<span class="infinite">∞</span>');
-// $breakpoints.children().find('.btn-remove-breakpoint, .min-width, .em').remove();
-// $btnAdd.trigger('click');
-// $btnAdd.trigger('click');
-// $btnAdd.trigger('click');
-
 if (hash) {
   hashBits = hash.split(';');
   defaults = [];
 
   hashBits.forEach(function (item) {
-    defaults.push(item.split(','));
+    var data = item.split(',');
+
+    data[3] = data[3] == 1 ? true : false;
+    data[4] = data[4] == 1 ? true : false;
+    defaults.push(data);
   });
 }
 
