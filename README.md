@@ -4,7 +4,7 @@
 
 ---
 
-### [☛ Grid system tutorial](https://github.com/algonquindesign/html-css/tree/gh-pages/grids)
+### [☛ Grid system tutorial](http://learn-the-web.algonquindesign.ca/topics/grids/)
 
 ### [☛ Videos for grids](https://www.youtube.com/playlist?list=PLWjCJDeWfDdeUChfM6TV2U7jzQVRjsu60)
 
@@ -47,14 +47,6 @@ html {
 	font-family: "Custom Font", serif;
 }
 ```
-
----
-
-## Stylus
-
-There’s also a Stylus grid builder that outputs the same grid system:
-
-**[⬇ Download Stylus Component](https://gist.github.com/thomasjbradley/7186573)**
 
 ---
 
