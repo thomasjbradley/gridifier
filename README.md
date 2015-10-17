@@ -12,8 +12,8 @@ These grid systems are taught as part of the [Algonquin College Graphic Design](
 
 This tool is introduced to the students after they learn the “long, hard, stupid way.”
 
-- **[☛ Grid system tutorial](http://learn-the-web.algonquindesign.ca/topics/grids/)**
-- **[☛ Videos for grids](https://www.youtube.com/playlist?list=PLWjCJDeWfDdeUChfM6TV2U7jzQVRjsu60)**
+- [**☛ Grid system tutorials & videos**](http://learn-the-web.algonquindesign.ca/topics/grids/)
+- [**☛ Gridifier cheat sheet**](http://learn-the-web.algonquindesign.ca/topics/gridifier-cheat-sheet/)
 
 ---
 
@@ -85,12 +85,9 @@ html {
 
 ## License & copyright
 
-© Thomas J Bradley
+© 2015 Thomas J Bradley
 
-Gridifier is licensed under the [New BSD license](LICENSE.txt).
-
-Some of the output code is copyright [Yahoo! Inc.](http://purecss.io/).
-
-Some of the output code is inspired by [Foundation](http://foundation.zurb.com/).
-
+Gridifier is licensed under the [MIT License](LICENSE).
+Some of the output code is inspired by [Pure CSS by Yahoo! Inc.](http://purecss.io/).
+Some of the output code is inspired by [Foundation by Zurb](http://foundation.zurb.com/).
 [Paper icon](http://thenounproject.com/term/paper/29062/) copyright Yazmin Alanis.
