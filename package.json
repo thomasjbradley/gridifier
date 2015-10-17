@@ -12,5 +12,10 @@
     "grunt-imageoptim": "^1.4.1",
     "grunt-svgmin": "^2.0.1",
     "matchdep": "^0.3.0"
+  },
+  "scripts": {
+    "grunt": "grunt",
+    "grunt-watch": "grunt",
+    "build": "grunt build"
   }
 }
