@@ -31,7 +31,7 @@ var gridUnitWidth = function gridUnitWidth (size, cols) {
 var gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths, unitNames, addOffsets, addPushPull) {
   var newUnit = true;
   var newWidth = gridUnitWidth(size, cols);
-  var newClass = [['.unit', prefix, size, cols].join('-'), [prefix, size, cols].join('-')].join(', .');
+  var newClass = [['.unit', prefix, size, cols].join('-'), [prefix, size, cols].join('-')].join(',\n.');
   var newClassOffset = ['.unit-offset', prefix, size, cols].join('-');
   var newClassPush = ['.unit-push', prefix, size, cols].join('-');
   var newClassPull = ['.unit-pull', prefix, size, cols].join('-');
@@ -86,9 +86,13 @@ var gridUnits = function gridUnits (prefix, cols, addOffsets, addPushPull) {
     }
   }
 
-  output.push([unitNames.join(',').replace(/ /g, ''), ' {\n  ', view('grid-unit'), '}\n'].join(''));
+  output.push([unitNames.join(',\n').replace(/ /g, ''), ' {\n  ', view('grid-unit'), '}\n'].join(''));
 
   return output;
+};
+
+var indent = function (code) {
+  return code;
 };
 
 $controls.on('keyup change submit', function (e) {
