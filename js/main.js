@@ -92,7 +92,15 @@ var gridUnits = function gridUnits (prefix, cols, addOffsets, addPushPull) {
 };
 
 var indent = function (code) {
-  return code;
+  var codeLines = code.split('\n');
+
+  codeLines.forEach(function (line, i) {
+    if (!line) return;
+
+    codeLines[i] = '  ' + line;
+  });
+
+  return codeLines.join('\n');
 };
 
 $controls.on('keyup change submit', function (e) {
