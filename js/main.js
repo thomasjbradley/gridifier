@@ -1,115 +1,110 @@
-var
-  hash = window.location.hash.replace(/#/, ''),
-  hashBits,
-  defaults = [
-    ['xs', 4, 0, 0, 0],
-    ['s', 4, 25, 0, 0],
-    ['m', 4, 38, 1, 1],
-    ['l', 4, 60, 1, 1]
-  ],
-  breakpointCount = 0,
+'use strict';
 
-  $controls = $('#controls'),
-  $breakpoints = $('#breakpoints'),
-  $btnAdd = $('#btn-add-breakpoint'),
-  $output = $('#output'),
-  $legacy = $('#legacy'),
+var hash = window.location.hash.replace(/#/, '');
+var hashBits;
+var defaults = [
+  ['xs', 4, 0, 0, 0],
+  ['s', 4, 25, 0, 0],
+  ['m', 4, 38, 1, 1],
+  ['l', 4, 60, 1, 1]
+];
+var breakpointCount = 0;
 
-  view = function view (name, vals) {
-    if (!vals) vals = {};
+var $controls = $('#controls');
+var $breakpoints = $('#breakpoints');
+var $btnAdd = $('#btn-add-breakpoint');
+var $output = $('#output');
+var $legacy = $('#legacy');
 
-    vals.legacy = $legacy.is(':checked');
+var view = function view (name, vals) {
+  if (!vals) vals = {};
 
-    return prepareTemplate(name, vals);
-  },
+  vals.legacy = $legacy.is(':checked');
 
-  gridUnitWidth = function gridUnitWidth (size, cols) {
-    return (size / cols) * 100;
-  },
+  return prepareTemplate(name, vals);
+};
 
-  gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths, unitNames, addOffsets, addPushPull) {
-    var
-      newUnit = true,
-      newWidth = gridUnitWidth(size, cols),
-      newClass = [['.unit', prefix, size, cols].join('-'), [prefix, size, cols].join('-')].join(', .'),
-      newClassOffset = ['.unit-offset', prefix, size, cols].join('-'),
-      newClassPush = ['.unit-push', prefix, size, cols].join('-'),
-      newClassPull = ['.unit-pull', prefix, size, cols].join('-'),
-      output = []
-    ;
+var gridUnitWidth = function gridUnitWidth (size, cols) {
+  return (size / cols) * 100;
+};
 
-    previousWidths.forEach(function (item) {
-      if (newWidth == item) newUnit = false;
-    });
+var gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths, unitNames, addOffsets, addPushPull) {
+  var newUnit = true;
+  var newWidth = gridUnitWidth(size, cols);
+  var newClass = [['.unit', prefix, size, cols].join('-'), [prefix, size, cols].join('-')].join(', .');
+  var newClassOffset = ['.unit-offset', prefix, size, cols].join('-');
+  var newClassPush = ['.unit-push', prefix, size, cols].join('-');
+  var newClassPull = ['.unit-pull', prefix, size, cols].join('-');
+  var output = [];
 
-    if (newUnit) {
-      previousWidths.push(newWidth);
-      unitNames.push(newClass);
+  previousWidths.forEach(function (item) {
+    if (newWidth == item) newUnit = false;
+  });
 
-      output.push([newClass, ' {\n  width: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
+  if (newUnit) {
+    previousWidths.push(newWidth);
+    unitNames.push(newClass);
 
-      if (addOffsets) {
-        output.push([newClassOffset, ' {\n  margin-left: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
-      }
+    output.push([newClass, ' {\n  width: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
 
-      if (addPushPull) {
-        output.push([newClassPush, ' {\n  left: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
-        output.push([newClassPull, ' {\n  left: -', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
-      }
+    if (addOffsets) {
+      output.push([newClassOffset, ' {\n  margin-left: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
     }
 
-    return output;
-  },
-
-  gridUnits = function gridUnits (prefix, cols, addOffsets, addPushPull) {
-    var
-      previousWidths = [100],
-      unitNames = [],
-      output = [],
-      i = 2,
-      j = 1
-    ;
-
-    if (cols < 3) cols = 3;
-
-    output.push(view('grid-unit-all-sizes', {'prefix': prefix}));
-    output.push(view('grid-unit-1', {'prefix': prefix}));
-
-    if(addOffsets) {
-      output.push(view('grid-unit-offset-0', {'prefix': prefix}));
+    if (addPushPull) {
+      output.push([newClassPush, ' {\n  left: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
+      output.push([newClassPull, ' {\n  left: -', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
     }
+  }
 
-    if(addPushPull) {
-      output.push(view('grid-unit-push-pull-0', {'prefix': prefix}));
+  return output;
+};
+
+var gridUnits = function gridUnits (prefix, cols, addOffsets, addPushPull) {
+  var previousWidths = [100];
+  var unitNames = [];
+  var output = [];
+  var i = 2;
+  var j = 1;
+
+  if (cols < 3) cols = 3;
+
+  output.push(view('grid-unit-all-sizes', {'prefix': prefix}));
+  output.push(view('grid-unit-1', {'prefix': prefix}));
+
+  if(addOffsets) {
+    output.push(view('grid-unit-offset-0', {'prefix': prefix}));
+  }
+
+  if(addPushPull) {
+    output.push(view('grid-unit-push-pull-0', {'prefix': prefix}));
+  }
+
+  for (i = 2; i <= cols; i++) {
+    for (j = 1; j <= i; j++) {
+      output = output.concat(gridUnitSingle(prefix, j, i, previousWidths, unitNames, addOffsets, addPushPull));
     }
+  }
 
-    for (i = 2; i <= cols; i++) {
-      for (j = 1; j <= i; j++) {
-        output = output.concat(gridUnitSingle(prefix, j, i, previousWidths, unitNames, addOffsets, addPushPull));
-      }
-    }
+  output.push([unitNames.join(',').replace(/ /g, ''), ' {\n  ', view('grid-unit'), '}\n'].join(''));
 
-    output.push([unitNames.join(',').replace(/ /g, ''), ' {\n  ', view('grid-unit'), '}\n'].join(''));
-
-    return output;
-  };
+  return output;
+};
 
 $controls.on('keyup change submit', function (e) {
-  var
-    gridPieces = [],
-    output = '',
-    buildHash = []
-  ;
+  var gridPieces = [];
+  var output = '';
+  var buildHash = [];
 
   e.preventDefault();
 
   $breakpoints.children().each(function () {
-    var prefix = $.trim($(this).find('.prefix').val()),
-      columns = $.trim($(this).find('.columns').val()),
-      addOffsets = $(this).find('.add-offsets').is(':checked'),
-      addPushPull = $(this).find('.add-push-pull').is(':checked'),
-      minWidthVal = $.trim($(this).find('.min-width').val()),
-      hasMinWidth = (parseInt(minWidthVal, 10) > 0)
+    var prefix = $.trim($(this).find('.prefix').val());
+    var columns = $.trim($(this).find('.columns').val());
+    var addOffsets = $(this).find('.add-offsets').is(':checked');
+    var addPushPull = $(this).find('.add-push-pull').is(':checked');
+    var minWidthVal = $.trim($(this).find('.min-width').val());
+    var hasMinWidth = (parseInt(minWidthVal, 10) > 0);
 
     if (hasMinWidth) {
       buildHash.push([prefix, columns, minWidthVal, addOffsets ? 1 : 0, addPushPull ? 1 : 0]);
@@ -117,7 +112,7 @@ $controls.on('keyup change submit', function (e) {
       gridPieces.push(
         view('media-query', {
             'min-width': minWidthVal,
-            'css': gridUnits(prefix, columns, addOffsets, addPushPull).join('')
+            'css': indent(gridUnits(prefix, columns, addOffsets, addPushPull).join(''))
           })
       );
     } else {
@@ -137,11 +132,9 @@ $controls.on('keyup change submit', function (e) {
 });
 
 $btnAdd.on('click', function () {
-  var
-    minWidthIncrement = 20,
-    extra = (new Array(100)).join("x"),
-    data = []
-  ;
+  var minWidthIncrement = 20;
+  var extra = (new Array(100)).join("x");
+  var data = [];
 
   if (defaults[breakpointCount]) {
     data = defaults[breakpointCount];
