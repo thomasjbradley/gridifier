@@ -3,7 +3,7 @@
 # TEAM
 
 Designer & Developer: Thomas J Bradley <hey@thomasjbradley.ca>
-Site: http://thomasjbradley.ca
+Site: https://thomasjbradley.ca
 GitHub: https://github.com/thomasjbradley
 Twitter: @thomasjbradley
 Location: Ottawa, Canada

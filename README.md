@@ -12,8 +12,8 @@ These grid systems are taught as part of the [Algonquin College Graphic Design](
 
 This tool is introduced to the students after they learn the “long, hard, stupid way.”
 
-- [**☛ Grid system tutorials & videos**](http://learn-the-web.algonquindesign.ca/topics/grids/)
-- [**☛ Gridifier cheat sheet**](http://learn-the-web.algonquindesign.ca/topics/gridifier-cheat-sheet/)
+- [**☛ Grid system tutorials & videos**](https://learn-the-web.algonquindesign.ca/topics/grids/)
+- [**☛ Gridifier cheat sheet**](https://learn-the-web.algonquindesign.ca/topics/gridifier-cheat-sheet/)
 
 ---
 
