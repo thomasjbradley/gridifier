@@ -16,6 +16,14 @@ var $btnAdd = $('#btn-add-breakpoint');
 var $output = $('#output');
 var $legacy = $('#legacy');
 
+var removeTrailingLeadingZeros = function (num) {
+  return num.replace(/^0*\./, '.').replace(/\.?0*$/, '');
+};
+
+var formatNumber = function (num) {
+  return removeTrailingLeadingZeros(num.toFixed(4));
+};
+
 var view = function view (name, vals) {
   if (!vals) vals = {};
 
@@ -45,15 +53,15 @@ var gridUnitSingle = function gridUnitSingle (prefix, size, cols, previousWidths
     previousWidths.push(newWidth);
     unitNames.push(newClass);
 
-    output.push([newClass, ' {\n  width: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
+    output.push([newClass, ' {\n  width: ', formatNumber(newWidth), '%;\n}\n\n'].join(''))
 
     if (addOffsets) {
-      output.push([newClassOffset, ' {\n  margin-left: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
+      output.push([newClassOffset, ' {\n  margin-left: ', formatNumber(newWidth), '%;\n}\n\n'].join(''))
     }
 
     if (addPushPull) {
-      output.push([newClassPush, ' {\n  left: ', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
-      output.push([newClassPull, ' {\n  left: -', newWidth.toFixed(4), '%;\n}\n\n'].join(''))
+      output.push([newClassPush, ' {\n  left: ', formatNumber(newWidth), '%;\n}\n\n'].join(''))
+      output.push([newClassPull, ' {\n  left: -', formatNumber(newWidth), '%;\n}\n\n'].join(''))
     }
   }
 
