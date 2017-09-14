@@ -79,7 +79,6 @@ var gridUnits = function gridUnits (prefix, cols, addOffsets, addPushPull) {
 
   output.push(view('grid-unit-all-sizes', {'prefix': prefix}));
   output.push(view('grid-unit-1', {'prefix': prefix}));
-  output.push(view('grid-unit-distribute', {'prefix': prefix}));
 
   if(addOffsets) {
     output.push(view('grid-unit-offset-0', {'prefix': prefix}));
@@ -96,6 +95,7 @@ var gridUnits = function gridUnits (prefix, cols, addOffsets, addPushPull) {
   }
 
   output.push([unitNames.join(',\n').replace(/ /g, ''), ' {\n  ', view('grid-unit'), '}\n'].join(''));
+  output.push(view('grid-unit-distribute', {'prefix': prefix}));
 
   return output;
 };

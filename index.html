@@ -5,7 +5,7 @@
   <title>Gridifier—a responsive grid building tool</title>
   <meta name="description" content="Gridifier is a tool to build a responsive grid framework for modern websites.">
   <meta name="viewport" content="width=1200">
-  <link href="css/gridifier.min.css?v=1.2.1" rel="stylesheet">
+  <link href="css/gridifier.min.css?v=1.3.1" rel="stylesheet">
   <link href="favicon.ico" rel="shortcut icon">
 </head>
 <body>
@@ -196,8 +196,6 @@
   position: relative;
 }
 
-{{main}}
-
 .unit-content-distribute,
 .content-distribute {
   display: -ms-flexbox;
@@ -261,6 +259,8 @@
   -webkit-align-self: center;
   align-self: center;
 }
+
+{{main}}
 </script>
 
 <script type="text/template" data-template="grid-unit">display: inline-block;
@@ -289,7 +289,8 @@
 
 </script>
 
-<script type="text/template" data-template="grid-unit-distribute">.unit-{{prefix}}-content-distribute,
+<script type="text/template" data-template="grid-unit-distribute">
+.unit-{{prefix}}-content-distribute,
 .{{prefix}}-content-distribute {
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -353,6 +354,15 @@
   align-self: center;
 }
 
+.unit-content-distribute[class*="unit-{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
+.content-distribute[class*="{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
+.unit-content-center:not([class*="{{prefix}}-hidden"]),
+.unit-content-center-vertical:not([class*="{{prefix}}-hidden"]),
+.unit-content-center-horizontal:not([class*="{{prefix}}-hidden"]) {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
 </script>
 
 <script type="text/template" data-template="grid-unit-offset-0">.unit-offset-{{prefix}}-0 {
@@ -376,7 +386,7 @@
 }
 </script>
 
-<script src="js/gridifier.min.js?v=1.2.1"></script>
+<script src="js/gridifier.min.js?v=1.3.1"></script>
 
 </body>
 </html>
