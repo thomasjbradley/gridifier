@@ -360,7 +360,14 @@
 .content-distribute[class*="{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
 .unit-content-center:not([class*="{{prefix}}-hidden"]),
 .unit-content-center-vertical:not([class*="{{prefix}}-hidden"]),
-.unit-content-center-horizontal:not([class*="{{prefix}}-hidden"]) {
+.unit-content-center-horizontal:not([class*="{{prefix}}-hidden"]),
+.unit-{{prefix}}-content-distribute[class*="unit-{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
+.unit-{{prefix}}-content-distribute[class*="{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
+.{{prefix}}-content-distribute[class*="unit-{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
+.{{prefix}}-content-distribute[class*="{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
+.unit-{{prefix}}-content-center:not([class*="{{prefix}}-hidden"]),
+.unit-{{prefix}}-content-center-vertical:not([class*="{{prefix}}-hidden"]),
+.unit-{{prefix}}-content-center-horizontal:not([class*="{{prefix}}-hidden"]) {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
