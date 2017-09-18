@@ -196,8 +196,7 @@
   position: relative;
 }
 
-.unit-content-distribute,
-.content-distribute {
+.unit-content-distribute {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
@@ -269,7 +268,13 @@
   *display: inline;
 {{/legacy}}</script>
 
-<script type="text/template" data-template="grid-unit-all-sizes">.unit-{{prefix}}-hidden {
+<script type="text/template" data-template="grid-unit-flex">display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+</script>
+
+<script type="text/template" data-template="grid-unit-all-sizes">.unit-{{prefix}}-hidden,
+.{{prefix}}-0 {
   display: none;
   visibility: hidden;
 }
@@ -352,25 +357,6 @@
   -ms-align-self: center;
   -webkit-align-self: center;
   align-self: center;
-}
-
-.unit-content-distribute[class*="unit-{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
-.unit-content-distribute[class*="{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
-.content-distribute[class*="unit-{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
-.content-distribute[class*="{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
-.unit-content-center:not([class*="{{prefix}}-hidden"]),
-.unit-content-center-vertical:not([class*="{{prefix}}-hidden"]),
-.unit-content-center-horizontal:not([class*="{{prefix}}-hidden"]),
-.unit-{{prefix}}-content-distribute[class*="unit-{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
-.unit-{{prefix}}-content-distribute[class*="{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
-.{{prefix}}-content-distribute[class*="unit-{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
-.{{prefix}}-content-distribute[class*="{{prefix}}-"]:not([class*="{{prefix}}-hidden"]),
-.unit-{{prefix}}-content-center:not([class*="{{prefix}}-hidden"]),
-.unit-{{prefix}}-content-center-vertical:not([class*="{{prefix}}-hidden"]),
-.unit-{{prefix}}-content-center-horizontal:not([class*="{{prefix}}-hidden"]) {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
 }
 </script>
 

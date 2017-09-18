@@ -95,6 +95,7 @@ var gridUnits = function gridUnits (prefix, cols, addOffsets, addPushPull) {
   }
 
   output.push([unitNames.join(',\n').replace(/ /g, ''), ' {\n  ', view('grid-unit'), '}\n'].join(''));
+  output.push('\n' + [unitNames.map(function (item) { return item.replace(/,/, '[class*="-content-"],'); }).join('[class*="-content-"],\n').replace(/ /g, ''), '[class*="-content-"] {\n  ', view('grid-unit-flex'), '}\n'].join(''));
   output.push(view('grid-unit-distribute', {'prefix': prefix}));
 
   return output;
